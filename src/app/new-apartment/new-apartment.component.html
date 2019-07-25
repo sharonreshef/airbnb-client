@@ -1,0 +1,75 @@
+<div class="container">
+  <form class="form" (ngSubmit)="submitApartment()" [formGroup]="apartmentForm">
+    <h3 class="title">ADD AN APARTMENT</h3>
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        placeholder="Name"
+        type="text"
+        formControlName="name"
+        MatFormFieldControl="name"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        placeholder="Price"
+        type="number"
+        formControlName="price"
+        MatFormFieldControl="price"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        placeholder="Number of rooms"
+        type="number"
+        formControlName="rooms"
+        MatFormFieldControl="rooms"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Type</mat-label>
+      <mat-select formControlName="type">
+        <mat-option *ngFor="let type of store.types" [value]="type.name">
+          {{ type.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div formArrayName="amenities" class="field">
+      <p>amenities <button type="button" (click)="addAmenity()">+</button></p>
+      <div *ngFor="let amenity of amenities.controls; let i = index">
+        <mat-form-field class="full-width">
+          <button type="button" class="remove" (click)="removeAmenity(i)">
+            -
+          </button>
+          <input
+            matInput
+            placeholder="Amenity"
+            type="text"
+            [formControlName]="i"
+            MatFormFieldControl="i"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        placeholder="Image Link"
+        type="text"
+        formControlName="pictureURL"
+        MatFormFieldControl="pictureURL"
+      />
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="accent"
+      type="submit"
+      [disabled]="!apartmentForm.valid"
+    >
+      SAVE
+    </button>
+  </form>
+</div>

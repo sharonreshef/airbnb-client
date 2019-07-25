@@ -1,0 +1,14 @@
+<mat-card [routerLink]="link" class="apartment">
+  <mat-card-header>
+    <mat-card-title>{{ apartment.name | uppercase }}</mat-card-title>
+    <mat-card-subtitle
+      >Price per night:
+      <strong>{{ apartment.price }}$</strong></mat-card-subtitle
+    >
+  </mat-card-header>
+  <img mat-card-image [src]="apartment.pictureURL" [alt]="apartment.name" />
+  <mat-card-content>
+    <p>Type: {{ apartment.type }}</p>
+    <p>Number of rooms: {{ apartment.rooms }}</p>
+  </mat-card-content>
+</mat-card>
